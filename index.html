@@ -205,6 +205,13 @@
   <script>
     const scriptUrl = 'https://script.google.com/macros/s/AKfycbxCcNX-iYaW-cncPF0hzKE5EsTyDBDTNyiaIasGs2KjcNM9GzSIRTNIDnz0-S8iCbwFFQ/exec'; // Replace with your actual script URL
     let highestResults = {};
+    // Function to clear localStorage
+function clearLocalStorage() {
+  localStorage.removeItem('startTime');
+}
+
+// Call clearLocalStorage when you want to remove the startTime
+clearLocalStorage();
 
     let countdownHours = 1; // Adjust countdown hours here
     let countdownMinutes = 0; // Adjust countdown minutes here
