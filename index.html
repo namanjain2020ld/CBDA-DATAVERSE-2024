@@ -207,8 +207,20 @@
     let highestResults = {};
 
 
-    let countdownHours = 1; // Adjust countdown hours here
-    let countdownMinutes = 0; // Adjust countdown minutes here
+    
+// Function to set a new startTime in localStorage
+function setStartTime() {
+  const newStartTime = Date.now(); // Get current timestamp
+  localStorage.setItem('startTime', newStartTime.toString()); // Store as string
+}
+
+// Call setStartTime when you want to set a new startTime
+setStartTime();
+
+    
+
+    let countdownHours = 0; // Adjust countdown hours here
+    let countdownMinutes = 37; // Adjust countdown minutes here
     let countdownSeconds = 2; // Adjust countdown seconds here
 
     let startTime = localStorage.getItem('startTime');
