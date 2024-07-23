@@ -166,7 +166,189 @@
       background-color: #333;
     }
 
-  </style>
+    /*text animation*/
+ #animated-text {
+  display: inline-block;
+}
+
+#animated-text span {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeInOut 3s infinite ease-in-out;
+}
+
+#animated-text span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+#animated-text span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+#animated-text span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+#animated-text span:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+#animated-text span:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+#animated-text span:nth-child(6) {
+  animation-delay: 1s;
+}
+
+#animated-text span:nth-child(7) {
+  animation-delay: 1.2s;
+}
+
+#animated-text span:nth-child(8) {
+  animation-delay: 1.4s;
+}
+
+#animated-text span:nth-child(9) {
+  animation-delay: 1.6s;
+}
+
+#animated-text span:nth-child(10) {
+  animation-delay: 1.8s;
+}
+
+@keyframes fadeInOut {
+  0%, 20%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+ </style>
+  
+
+
+ <style>
+  /* Existing styles... */
+
+  /* Winner animation styles */
+  .winner-row {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(9, 9, 9, 0.9); /* Semi-transparent white */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    z-index: 1000; /* Ensure it's on top */
+    animation: popOut 0.5s ease-out forwards;
+  }
+
+  @keyframes popOut {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  /* Optional: Winner overlay styles */
+  .winner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: white;
+    z-index: 1100; /* Ensure it's on top of winner rows */
+  }
+
+
+  /*///////////////////////////////////////////////////////////////////////////////////////*/
+
+  /* CSS for Winner Overlay *//* CSS for Winner Overlay */
+.winner-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #000000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  z-index: 1000;
+}
+
+.top-teams-container {
+  margin-top: 15px;
+}
+
+.team-container {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.team-container h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 5px;
+}
+
+ul li span:first-child {
+  font-weight: bold;
+  margin-right: 5px;
+  color: rgb(255, 255, 255); /* Change text color to red */
+}
+
+ul li span:last-child {
+  color: rgb(255, 255, 255); /* Change text color to red */
+}
+
+/* Animation for Winner Row */
+.winner-row {
+  animation: winnerAnimation 3.5s ease-in-out;
+  animation-fill-mode: forwards; 
+}
+
+@keyframes winnerAnimation {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+</style>
+
+
+
+  
 </head>
 <body>
 
@@ -185,12 +367,24 @@
     <div id="seconds" class="stopwatch-digit"></div>
   </div>
 
-  <h1>Live Results</h1>
+  <h1>Live Results CBDA  <span id="animated-text">
+    <span> 2</span>
+    <span>0</span>
+    <span>2</span>
+    <span>4</span>
+    <span> </span>
+    <span>D</span>
+    <span>A</span>
+    <span>Y</span>
+    <span> </span>
+    <span>3</span>
+  </span></h1>
+  
 
   <table>
     <thead>
       <tr>
-        <th onclick="sortTable(0)">Student ID</th>
+        <th onclick="sortTable(0)">Team</th>
         <th onclick="sortTable(1)">Total Marks</th>
         <th>Aptitude</th>
         <th>Case 1</th>
@@ -203,20 +397,180 @@
   </table>
 
   <script>
-    const scriptUrl = 'https://script.google.com/macros/s/AKfycbxCcNX-iYaW-cncPF0hzKE5EsTyDBDTNyiaIasGs2KjcNM9GzSIRTNIDnz0-S8iCbwFFQ/exec'; // Replace with your actual script URL
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbwijqWaEvbWqUzyTq0fquLS7jbf2GBd4I-roUE93mFZzziQ4-Jb0RrMLrbsu98a8N2TrQ/exec'; // Replace with your actual script URL
     let highestResults = {};
 
-    
+    // Countdown timer functionality
+    function startCountdown() {
+      // Adjust countdown times
+      let countdownStartHour = 11;
+      let countdownStartMinute = 45;
+      let countdownEndHour = 13;
+      let countdownEndMinute = 0;
 
-    let countdownHours = 0; // Adjust countdown hours here
-    let countdownMinutes = 0; // Adjust countdown minutes here
-    let countdownSeconds = 0; // Adjust countdown seconds here
+      let now = new Date();
+      let todayStartTime = new Date();
+      todayStartTime.setHours(countdownStartHour, countdownStartMinute, 0, 0);
 
-    let startTime = localStorage.getItem('startTime');
-    if (!startTime) {
-      startTime = Date.now();
-      localStorage.setItem('startTime', startTime);
+      let todayEndTime = new Date();
+      todayEndTime.setHours(countdownEndHour, countdownEndMinute, 0, 0);
+
+      // Check if current time is after the end time, then set the countdown for the next day
+      if (now > todayEndTime) {
+        todayStartTime.setDate(todayStartTime.getDate() + 1);
+        todayEndTime.setDate(todayEndTime.getDate() + 1);
+      }
+
+      let countdownStartTime = todayStartTime.getTime();
+      let countdownEndTime = todayEndTime.getTime();
+
+      // Calculate initial countdown
+      let initialCountdown = countdownEndTime - now.getTime();
+
+      let countdownInterval = setInterval(() => {
+        now = new Date().getTime();
+        let distance = countdownEndTime - now;
+
+        if (distance < 0) {
+          clearInterval(countdownInterval);
+          // Optionally handle countdown completion here
+          document.getElementById('hours').textContent = '00';
+          document.getElementById('minutes').textContent = '00';
+          document.getElementById('seconds').textContent = '00';
+
+/*/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const resultsTbody = document.getElementById('results');
+const rows = Array.from(resultsTbody.querySelectorAll('tr'));
+
+// Sort rows based on Total Marks (assuming Total Marks is in the second column, index 1)
+rows.sort((rowA, rowB) => {
+  const cellA = parseFloat(rowA.cells[1].textContent);
+  const cellB = parseFloat(rowB.cells[1].textContent);
+  return cellB - cellA; // Sort in descending order
+});
+
+const topRows = rows.slice(0, 2); // Select top 2 rows
+
+// Remove all existing rows from the results table
+resultsTbody.innerHTML = '';
+
+// Add only the top 2 rows with winner animation
+topRows.forEach(row => {
+  const clone = row.cloneNode(true); // Clone the row
+  clone.classList.add('winner-row'); // Add class for winner animation
+  resultsTbody.appendChild(clone); // Append cloned row with animation
+});
+
+// Hide the stopwatch and day-night toggle
+document.getElementById('stopwatch').style.display = 'none';
+document.getElementById('day-night-toggle').style.display = 'none';
+
+// Create and customize overlay content with top 2 rows information
+const overlay = document.createElement('div');
+overlay.classList.add('winner-overlay');
+
+// Create a heading for the overlay
+const heading = document.createElement('h2');
+heading.textContent = 'Top 2 Teams';
+heading.style.color = "red";
+
+// Create a container for displaying top teams
+const topTeamsContainer = document.createElement('div');
+topTeamsContainer.classList.add('top-teams-container');
+
+// Iterate through top rows to display their content
+topRows.forEach((row, index) => {
+  const teamName = row.cells[0].textContent; // Assuming team name is in the first column
+  const totalMarks = row.cells[1].textContent; // Total Marks (second column)
+  const aptitudeMarks = row.cells[2].textContent; // Aptitude Marks (third column)
+  const case1Marks = row.cells[3].textContent; // Case 1 Marks (fourth column)
+  const case2Marks = row.cells[4].textContent; // Case 2 Marks (fifth column)
+
+  const teamContainer = document.createElement('div');
+  teamContainer.classList.add('team-container');
+
+  const teamHeading = document.createElement('h3');
+  teamHeading.textContent = `${index + 1}. ${teamName}`; // Display rank
+  teamContainer.appendChild(teamHeading);
+
+  const marksList = document.createElement('ul');
+  const totalMarksItem = createListItem('Total Marks:', totalMarks);
+  const aptitudeMarksItem = createListItem('Aptitude:', aptitudeMarks);
+  const case1MarksItem = createListItem('Case 1:', case1Marks);
+  const case2MarksItem = createListItem('Case 2:', case2Marks);
+
+  marksList.appendChild(totalMarksItem);
+  marksList.appendChild(aptitudeMarksItem);
+  marksList.appendChild(case1MarksItem);
+  marksList.appendChild(case2MarksItem);
+
+  teamContainer.appendChild(marksList);
+  topTeamsContainer.appendChild(teamContainer);
+});
+
+function createListItem(label, value) {
+  const item = document.createElement('li');
+  const labelSpan = document.createElement('span');
+  labelSpan.textContent = label;
+  const valueSpan = document.createElement('span');
+  valueSpan.textContent = value;
+  item.appendChild(labelSpan);
+  item.appendChild(valueSpan);
+  return item;
+}
+
+// Append heading and top teams container to overlay
+overlay.appendChild(heading);
+overlay.appendChild(topTeamsContainer);
+
+// Append overlay to the document body
+document.body.appendChild(overlay);
+
+
+
+
+
+
+
+
+
+
+          // Restart countdown for the next day
+          //startCountdown();
+        } else {
+          const hours = Math.floor(distance / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          updateStopwatchDisplay(hours, minutes, seconds);
+        }
+      }, 1000); // Update every second
+
+      // Initial display
+      let hours = Math.floor(initialCountdown / (1000 * 60 * 60));
+      let minutes = Math.floor((initialCountdown % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((initialCountdown % (1000 * 60)) / 1000);
+      updateStopwatchDisplay(hours, minutes, seconds);
     }
+
+    function updateStopwatchDisplay(hours, minutes, seconds) {
+      document.getElementById('hours').textContent = padTime(hours);
+      document.getElementById('minutes').textContent = padTime(minutes);
+      document.getElementById('seconds').textContent = padTime(seconds);
+    }
+
+    function padTime(time) {
+      return time < 10 ? `0${time}` : time;
+    }
+
+    // Start the countdown stopwatch when the page loads
+    startCountdown();
+
+
+
+
+
+
+
 
     function fetchResults() {
       fetch(scriptUrl)
@@ -231,7 +585,7 @@
           let newHighestResults = {};
           let updated = false;
 
-          // Assuming data is in the format [ [studentId, marks, aptitude, case1, case2], ... ]
+          // Assuming data is in the format [ [.. marks, aptitude, case1, case2], ... ]
           for (let i = 0; i < data.length; i++) {
             const row = data[i];
             const studentId = row[0];
@@ -347,44 +701,6 @@
         }, index * 100); // Delay appearance for smooth, slow sequential effect
       });
     }
-
-    // Countdown timer functionality
-    function startCountdown() {
-      let elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
-      let totalSeconds = countdownHours * 3600 + countdownMinutes * 60 + countdownSeconds - elapsedSeconds;
-
-      stopwatchInterval = setInterval(() => {
-        totalSeconds--;
-
-        if (totalSeconds < 0) {
-          clearInterval(stopwatchInterval);
-          totalSeconds = 0;
-          // Optionally handle countdown completion here
-        }
-
-        const hours = Math.floor(totalSeconds / 3600);
-        const minutes = Math.floor((totalSeconds % 3600) / 60);
-        const seconds = totalSeconds % 60;
-
-        updateStopwatchDisplay(hours, minutes, seconds);
-
-      }, 1000); // Update every second
-
-      updateStopwatchDisplay(Math.floor(totalSeconds / 3600), Math.floor((totalSeconds % 3600) / 60), totalSeconds % 60);
-    }
-
-    function updateStopwatchDisplay(hours, minutes, seconds) {
-      document.getElementById('hours').textContent = padTime(hours);
-      document.getElementById('minutes').textContent = padTime(minutes);
-      document.getElementById('seconds').textContent = padTime(seconds);
-    }
-
-    function padTime(time) {
-      return time < 10 ? `0${time}` : time;
-    }
-
-    // Start the countdown stopwatch when the page loads
-    startCountdown();
 
     // Day-Night mode toggle function
     function toggleDayNightMode() {
